@@ -10,21 +10,21 @@ I. IMPORT RAW DATA FILES
 
 II. PREPROCESS THE DATASET
 
-A) DATA TYPE CONVERSION
-B) DATA QUALITY ASSESSMENT
-C) TIME AXIS SHIFTING
-D) ATTENUATION DATA CORRECTION
-E) DATA SMOOTHING
+A) data type conversion
+B) data quality assessment
+C) time axis shifting
+D) attenuation data correction
+E) data smoothing
 
 III. EXPLORE THE DATASET
 
-A) VISUALISATION OF DATA DISTRIBUTION
-B) OUTLIER/EVENT IDENTIFICATION AND REMOVAL
+A) visualisation of data distribution
+B) outlier/event identification and removal
 
 IV. INTERPRET THE RESULTS
 
-A) ABSORBANCE RATIOS
-B) ABSORBANCE SPECTRA CHANGES
+A) absorbance ratios
+B) absorbance spectra changes
 
 
 ### FILES
