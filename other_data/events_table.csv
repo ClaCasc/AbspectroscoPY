@@ -1,0 +1,3 @@
+start_date,start_time,end_date,end_time,event_code,note
+2018-11-19,03:30:00,2018-11-19,07:04:00,1,example event type 1 (visualisation purpose)
+2018-11-29,09:00:00,2018-11-30,09:00:00,2,example event type 2 (visualisation purpose)
