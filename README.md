@@ -44,8 +44,7 @@ IV. CSV FILES. They represent an example dataset that can be used to test and un
 
 To cite AbspectroscoPY use:
 
-Cascone et al. (2021). AbspectroscoPY, a Python toolbox for absorbance-based sensor data in water quality monitoring. Environmental Science: Water Research & Technology (current status: to be accepted for publication after revisions)
-
+Cascone et al. (2022). AbspectroscoPY, a Python toolbox for absorbance-based sensor data in water quality monitoring. Environmental Science: Water Research & Technology. DOI	https://doi.org/10.1039/D1EW00416F
 
 ### REFERENCES
 
