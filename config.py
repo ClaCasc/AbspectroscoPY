@@ -2,8 +2,8 @@
 Configuration file: input from the user
 """
 
-input_directory = 'C:/Users/cace0002/AbspectroscoPY/'
-output_directory = 'C:/Users/cace0002/AbspectroscoPY/'   
+input_directory = 'C:/Users/cace0002/AbspectroscoPY-master/'
+output_directory = 'C:/Users/cace0002/AbspectroscoPY-master/'   
 ### DATA ASSEMBLY AND DATA QUALITY ASSESSMENT
 decimal = '.'                                                   # decimal of the input file
 sep = ';'                                                       # separator of the input file
