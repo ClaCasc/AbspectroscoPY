@@ -245,8 +245,8 @@ def makeaplot(df_in,
     #plt.rcParams['axes.labelweight'] = 'bold'                                        # define the label weight
     plt.gca().tick_params(axis = 'both', which = 'major', length = 5, labelsize = 18) # define the label size of the labels on the axes-ticks (major and minor) and length and color of ticks 
     plt.gca().tick_params(which = 'minor', length = 4, colors = 'k')
-    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter(dateformat))             #define the format of the date
-    plt.gca().xaxis.set_major_locator(locator)                                        # e.g. "AutoDateLocator()"/ "DayLocator()"
+    #plt.gca().xaxis.set_major_formatter(mdates.DateFormatter(dateformat))             #define the format of the date
+    #plt.gca().xaxis.set_major_locator(locator)                                        # e.g. "AutoDateLocator()"/ "DayLocator()"
     #plt.minorticks_on()                                                              # turn on the minor ticks on both the axes
     plt.gca().set_xlim(timestart,timeend)                                             # define the x-axis range 
     plt.gca().set_ylim(yminlim,ymaxlim)                                               # define the y-axis range
