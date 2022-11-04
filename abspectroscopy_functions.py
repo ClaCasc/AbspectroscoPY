@@ -263,6 +263,7 @@ def makeaplot(df_in,
     fig = plt.gca().get_figure()                                                      # return the figure 
     fig.savefig(output_dir + title + str(label_name) + fig_format, dpi = dpi)         # save the figure to the desired format and resolution 
 
+    
 def dup_check(df_in,
              dateheadername):
     '''
@@ -271,10 +272,56 @@ def dup_check(df_in,
     :argument dateheadername: name of the date column
     :return: two dataframes with duplicates by dateheadername and by all columns
     '''    
-    df_out1 = df_in[df_in.index.duplicated(keep=False)] # check for duplicates by dateheadername     
-    df_out2 = df_in[df_in.duplicated()]                 # check for duplicates by all the columns and report them once 
-    return(df_out1, df_out2)    
+    df_out1 = df_in.copy()
+    df_out1 = df_in[df_in.duplicated()]                                              # check for duplicates by all columns (which could include also data when DST reverts to STD, in case they have an identical value)
+    print('The sensor has the following duplicates by all the columns:', df_out1)
 
+    df_out2 = df_in.copy()
+    df_out2 = df_out2.drop_duplicates(subset = None, keep = "first", inplace = False)# drop second duplicate by all columns
+    df_out3 = df_out2.copy()
+    df_out3 = df_out3[(df_out3.duplicated(subset = [dateheadername], keep = 'first'))]# check for duplicates by dateheadername (e.g. DST)     
+    if df_out3.empty == True:
+        print('The sensor takes into account the DST (the data are continuous): there is no risk to drop real measurements when dropping duplicates only by dateheadername')
+    else:
+        print('Check if the sensor does not take into account the DST (i.e., it follows the clock, and therefore duplicates by datetime appear when DST reverts to STD): consider if to drop real measurements', df_out3)
+    return(df_out1, df_out2, df_out3)   
+    
+    
+def dup_drop(df_in1,
+             df_in2,   
+             output_dir,
+             dateheadername,
+             samplename
+             ):
+    '''
+    function to drop duplicates
+    :argument df_in1: dataframe in input with no duplicates by all columns
+    :argument df_in2: dataframe in input with duplicates probably linked to DST reverting to STD
+    :argument output_dir: directory where storing the results
+    :argument dateheadername: name of the date column
+    :argument samplename: name of the file
+    :return: one dataframe without duplicates by all columns and with or without duplicates probably linked to DST reverting to STD
+    '''      
+    answer = input()
+    if answer == 'yes':
+        df_out = df_in1.copy()
+        idx_dst = df_in2.index                                                                                         # index of duplicates by headername 
+        df_out = df_out[~df_out.index.isin(idx_dst)]                                                                   # remove these duplicates
+        df_out = df_out.set_index(dateheadername)
+        df_out.to_csv(output_dir + 'df_nodup_' + str(samplename) + '.csv', sep = sep, decimal = decimal, index=True)   # export the dataframe with no duplicates   
+    elif answer == 'no':
+        df_out = df_in1.copy()
+        df_out = df_out.set_index(dateheadername)
+        df_out.to_csv(output_dir + 'df_nodupall_' + str(samplename) + '.csv', sep = sep, decimal = decimal, index=True) # export the dataframe with no complete duplicates
+    else:
+        root = tk.Tk()
+        root.withdraw()
+        root.attributes("-topmost", True)
+
+        MsgBox = tk.messagebox.showerror ('Error','You are not providing one of the two possible answers. Please input "yes" or "no".',icon = 'error')
+        root.destroy()       
+    return(df_out)  
+  
 def tshift_dst(df_in, 
                dateheadername,
                nsamples_per_hour):
