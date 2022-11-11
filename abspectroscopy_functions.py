@@ -270,7 +270,7 @@ def dup_check(df_in,
     function to check and plot duplicates
     :argument df_in: dataframe in input
     :argument dateheadername: name of the date column
-    :return: two dataframes with duplicates by dateheadername and by all columns
+    :return: three dataframes including only duplicates by all columns, a dataframe without duplicates by all columns and a dataframe including duplicates by headername.  
     '''    
     df_out1 = df_in.copy()
     df_out1 = df_in[df_in.duplicated()]                                              # check for duplicates by all columns (which could include also data when DST reverts to STD, in case they have an identical value)
